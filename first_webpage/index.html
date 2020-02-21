@@ -1,0 +1,99 @@
+<html>
+
+<head>
+</head>
+
+<style>
+
+p {
+    font-family: "Comic Sans MS";
+    background: red;
+}
+
+/*
+img {
+    margin: 200px;
+    margin-left: 200px;
+    margin-right: 0px;
+}
+            */
+
+</style>
+
+<script>
+
+const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
+var colorIndex = 0;
+var repeater;
+const width  = window.innerWidth || document.documentElement.clientWidth || 
+document.body.clientWidth;
+const height = window.innerHeight|| document.documentElement.clientHeight|| 
+document.body.clientHeight;
+
+console.log(width, height);
+
+
+
+function setImage(image = document.getElementById('reactionGif'), x = (width/2) - (image.width / 2), y = (height/2) - (image.height / 2)){ //center image by default
+    image.style.position = "absolute";
+    image.style.left = x +'px';
+    image.style.top = y +'px';
+}
+
+var x_vel;
+var y_vel;
+const max_vel = 2;
+const min_vel = -2;
+var color_repeater;
+var bg_r = 0x00;
+var bg_g = 0x00;
+var bg_b = 0x00;
+var bg_color;
+
+function randRange(min, max){
+    return Math.random() * (max - min) + min;
+}
+
+function moveImage(){
+    var image = document.getElementById('reactionGif');
+    x_vel = randRange(min_vel, max_vel);
+    y_vel = randRange(min_vel, max_vel);
+    clearInterval(color_repeater);
+    color_repeater = setInterval(function(){
+        //document.body.style.backgroundColor = colors[colorIndex++];
+        bg_r = randRange(0x80, 0xFF);
+        bg_g = randRange(0x80, 0xFF);
+        bg_b = randRange(0x80, 0xFF);
+        bg_color = (bg_r << 16) | (bg_g << 8) | (bg_b);
+        console.log(bg_color.toString(16));
+        document.body.style.backgroundColor = bg_color.toString(16);
+        //colorIndex %= colors.length;
+        //bg_color &=0xFFFFFF;
+    }, 1/(Math.abs(x_vel) + Math.abs(y_vel)) * 300);
+    //console.log(x_vel, y_vel);
+    console.log((Math.abs(x_vel) + Math.abs(y_vel)) * 100)
+    setInterval(function(){
+        image.style.left = parseFloat(image.style.left.replace('px',''))+x_vel+'px';
+        image.style.top = parseFloat(image.style.top.replace('px',''))+y_vel+'px';
+        //console.log(image.width + parseFloat(image.style.left))
+        if(image.width + parseFloat(image.style.left) > width || parseFloat(image.style.left) < 0){
+            x_vel = -x_vel;
+        }
+        if(image.height + parseFloat(image.style.top) > height || parseFloat(image.style.top) < 0){
+            y_vel = -y_vel;
+        }
+    }, 20);
+}
+
+</script> 
+
+<body>
+    <div>
+        <img id='reactionGif' onload="setImage();" src="../tester/cwtf2.gif" onmouseover="moveImage();" onmouseout="">
+        <p>
+            blahblahblah<a href="https://reddit.com/"><strong>BLAH</strong></a> 
+        </p>
+    </div>
+</body> 
+
+</html>

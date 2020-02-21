@@ -1,0 +1,87 @@
+<html>
+
+<head>
+</head>
+
+<style>
+
+p {
+    font-family: "Comic Sans MS";
+    background: red;
+}
+
+/*
+img {
+    margin: 200px;
+    margin-left: 200px;
+    margin-right: 0px;
+}
+            */
+
+</style>
+
+<script>
+
+const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
+var colorIndex = 0;
+var repeater;
+const width  = window.innerWidth || document.documentElement.clientWidth || 
+document.body.clientWidth;
+const height = window.innerHeight|| document.documentElement.clientHeight|| 
+document.body.clientHeight;
+
+console.log(width, height);
+
+
+function go(i){
+    if(i == 1){
+        //while(true){
+            document.body.style.backgroundColor = colors[colorIndex++];
+            //await new promise(r => setTimeout(r, 10));
+            if(colorIndex == colors.length){
+                colorIndex = 1;
+                //break;
+            //}
+        }
+    }
+    else{
+        document.body.style.backgroundColor = 'white';
+    }
+}
+
+function setImage(){
+    var image = document.getElementById('reactionGif');
+    image.style.left = (width / 2) +'px';
+    image.style.top = (height / 2) +'px';
+}
+
+function moveImage(){
+    var image = document.getElementById('reactionGif');
+    var x_pos = 0;
+    var y_pos = 0;
+    var max_vel = 2;
+    var min_vel = -1;
+    var x_vel = Math.random() * (max_vel - min_vel) + min_vel;
+    var y_vel = Math.random() * (max_vel - min_vel) + min_vel;
+    console.log(x_vel, y_vel);
+    setInterval(function(){
+        image.style.position = "absolute";
+        image.style.left = x_pos+'px';
+        image.style.top = y_pos+'px';
+        x_pos += x_vel;
+        y_pos += y_vel;
+    }, 10);
+}
+
+</script> 
+
+<body>
+    <div>
+        <img id='reactionGif' onload="setImage();" src="../tester/cwtf2.gif" onmouseover="repeater=setInterval(go(1),100);moveImage();" onmouseout="clearInterval(repeater);">
+        <p>
+            blahblahblah<a href="https://reddit.com/"><strong>BLAH</strong></a> 
+        </p>
+    </div>
+</body> 
+
+</html>
