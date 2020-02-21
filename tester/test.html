@@ -1,0 +1,154 @@
+<html>
+<head>
+	<title>Hello, world!</title>
+</head>
+<link href="//fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+<style>
+body {
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	font-family: Arial;
+	margin-top: 1em;
+}
+.lobster {
+    font-family: Lobster;
+    font-size: 200%;
+    color: white;
+    text-shadow: 2px 5px 10px rgba(0,0,0,.5);
+}
+#player {
+	width: 1px;
+	height: 1px;
+	opacity: 0;
+}
+</style>
+<script>
+
+var max_nyan = 200;
+var cur_nyan = 1;
+var counter = 0;
+var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
+var colorIndex = 0;
+const goodhost = "2020.vizsociety.net";
+
+function checkifloaded() {
+
+	if((window.location.hostname.toLowerCase().indexOf(goodhost)!==-1)&&((window.location.protocol=="http:")||(window.location.protocol=="https:"))) {
+		document.getElementById("status").innerHTML = "<img id='react' width='500px' src='//"+goodhost+"/~awellers/tester/cwtf.gif'><br><h2>Yeaaah, you got it working!</h2><h2 id='more'></h2><div id='player'></div>";
+			var im = new Image();
+			im.src = "//"+goodhost+"/~awellers/tester/cwtf2.gif";
+
+		window.videoId = 'l8WMGBuNaus';
+		var tag = document.createElement('script');
+		tag.src = "//www.youtube.com/iframe_api";
+		var firstScriptTag = document.getElementsByTagName('script')[0];
+		firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+          
+		  setTimeout(function() {
+		  	startNyan();
+		  	document.body.className+="lobster";
+		  	},5000);
+		  setTimeout(function() {
+		  	document.getElementById("react").src = "//"+goodhost+"/~awellers/tester/cwtf2.gif";
+		  },6000);
+		  var basetime = 20000;
+		  var inctime = 8000;
+		  setTimeout(function () {
+		    document.getElementById("more").innerHTML = "This is so great!";
+		  },basetime); basetime+=inctime;
+		  setTimeout(function () {
+		    document.getElementById("more").innerHTML = "You're still watching!";
+		  },basetime);basetime+=inctime;
+		  setTimeout(function () {
+		    document.getElementById("more").innerHTML = "I mean, I can hardly blame you!";
+		  },basetime);basetime+=inctime;
+		  setTimeout(function () {
+		    document.getElementById("more").innerHTML = "But seriously...";
+		  },basetime);basetime+=inctime;
+		  setTimeout(function () {
+		    document.getElementById("more").innerHTML = "You've accomplished so much in this class already...";
+		  },basetime);basetime+=inctime;
+		  setTimeout(function () {
+		    document.getElementById("more").innerHTML = "...aren't you worried that this is your peak?";
+		  },basetime);basetime+=inctime;
+		  setTimeout(function () {
+		    document.getElementById("more").innerHTML = "Don't worry, it's not!";
+		  },basetime);basetime+=inctime;
+		  setTimeout(function () {
+		    document.getElementById("more").innerHTML = "You've only got great things ahead of you!";
+		  },basetime);
+	}
+}
+
+function startNyan() {
+	  setInterval(function(){
+		document.body.style.backgroundColor = colors[colorIndex++];
+		colorIndex %= colors.length;
+		}, 100);
+
+	for(var i=0; i<max_nyan;i++) {
+		var oImg=document.createElement("img");
+		oImg.setAttribute('src', '//'+goodhost+'/~awellers/tester/nyan.gif');
+		oImg.setAttribute('height', '50');
+		oImg.setAttribute('id','nyan_'+i);
+		oImg.style.position = "absolute";
+		oImg.style.zIndex = "-100";
+		document.body.appendChild(oImg);
+		document.getElementById("nyan_"+i).style.left = "-"+(Math.floor((Math.random() * window.innerWidth + 1))+100)+"px";
+		document.getElementById("nyan_"+i).style.top = (Math.floor((Math.random() * window.innerHeight) + 1))+"px";
+	}
+	setInterval(function() {
+		counter=counter+25;
+		if(counter>360) counter = 0;
+		for(var i=0;i<cur_nyan;i++) {
+			var n = document.getElementById("nyan_"+i);
+			var nl = parseFloat(n.style.left.substr(0,n.style.left.length-2));
+			n.style.left = (nl+10)+"px";
+			if((nl+10)>window.innerWidth+30) {
+				n.style.left = "-"+(Math.floor((Math.random() * 150 + 40)))+"px";
+				n.style.top = (Math.floor((Math.random() * window.innerHeight) + 1))+"px";
+			}
+			var nt = parseFloat(n.style.top.substr(0,n.style.top.length-2));
+			n.style.top = ((Math.sin(counter*0.0174533))*5+nt)+"px";
+		}
+	},40);
+	setInterval(function () {
+	    if(cur_nyan<max_nyan) cur_nyan++;
+	},300);
+}
+
+
+function onYouTubeIframeAPIReady() {
+  var player;
+  player = new YT.Player('player', {
+    videoId: 'l8WMGBuNaus',
+    playerVars: { 'autoplay': 1, 'controls': 0 },
+    events: {
+      'onReady': onPlayerReady,
+    }
+  });
+}
+
+function onPlayerReady(event) {
+  isReady = true;
+}
+
+function videoLoaded (){
+  if (isReady) {
+      poster.hide();
+      video.show();
+
+      $('body').trigger('fluidvideos');
+
+      player.playVideo();
+      clearInterval(interval);
+  } 
+}
+
+</script>
+<body onload="checkifloaded();">
+<center>
+<div id="status"><img src="http://2020.vizsociety.net/~awellers/tester/sadkid.gif"><br><h2>Sorry, you don't have this set up correctly.</h2>The URL should be something like <a href="http://2020.vizsociety.net/~username/test.html">http://2020.vizsociety.net/~<i><b>username</b></i>/test.html</a><br><h2>Try again!</h2></div>
+</body>
+</html>
