@@ -1,22 +1,36 @@
 <html>
 
 <head>
+    <link href="https://fonts.googleapis.com/css?family=Hanalei&display=swap" rel="stylesheet">
 </head>
 
 <style>
 
-p {
-    font-family: "Comic Sans MS";
-    background: red;
+header{
+    font-family: Hanalei;
+    color: white;
+    font-size: 500%;
+    position: fixed;
+    margin-left: 10%;
+    margin-right: -10%;
 }
 
-/*
-img {
-    margin: 200px;
-    margin-left: 200px;
-    margin-right: 0px;
+p {
+    font-family: "Calibri";
+    font-size: 600%;
+    background: red;
+    text-align: center;
 }
-            */
+
+.footer {
+    font-family: "Comic Sans MS";
+    background: red;
+    text-align: center;
+}
+
+.link:hover{
+    color: #00FF00;
+}
 
 </style>
 
@@ -60,14 +74,17 @@ function moveImage(){
     y_vel = randRange(min_vel, max_vel);
     clearInterval(color_repeater);
     color_repeater = setInterval(function(){
-        bg_r = randRange(0x80, 0xFF);
-        bg_g = randRange(0x80, 0xFF);
-        bg_b = randRange(0x80, 0xFF);
+        bg_r = randRange(0x40, 0xFF);
+        bg_g = randRange(0x40, 0xFF);
+        bg_b = randRange(0x40, 0xFF);
         bg_color = (bg_r << 16) | (bg_g << 8) | (bg_b);
         console.log(bg_color.toString(16));
         document.body.style.backgroundColor = bg_color.toString(16);
+        //document.body.style.backgroundColor = colors[colorIndex++];
+        //colorIndex %= colors.length;
+        //bg_color &=0xFFFFFF;
     }, 1/(Math.abs(x_vel) + Math.abs(y_vel)) * 300);
-    console.log(x_vel, y_vel);
+    //console.log(x_vel, y_vel);
     console.log((Math.abs(x_vel) + Math.abs(y_vel)) * 100)
     setInterval(function(){
         image.style.left = parseFloat(image.style.left.replace('px',''))+x_vel+'px';
@@ -85,12 +102,24 @@ function moveImage(){
 </script> 
 
 <body>
-    <div>
-        <img id='reactionGif' onload="setImage();" src="../tester/cwtf2.gif" onmouseover="moveImage();" onmouseout="">
+    <div id='welcome'>
+        <header>
+            Welcome to my new website.
+        </header>
+    </div>
+        <img id='reactionGif' onload="setImage();" src="tester/cwtf2.gif" onmouseover="moveImage();" onmouseout="">
+        <img id='reactionGif1' onload="setImage(image=this,x=100,y=200);" src="tester/cwtf2.gif" onmouseover="moveImage();" onmouseout="">
+        <img id='reactionGif2' onload="setImage(image=this,x=200,y=100);" src="tester/cwtf2.gif" onmouseover="moveImage();" onmouseout="">
+        <img id='reactionGif3' onload="setImage(image=this,x=200,y=200);" src="tester/cwtf2.gif" onmouseover="moveImage();" onmouseout="">
+        <img id='reactionGif4' onload="setImage(image=this,x=100,y=100);" src="tester/cwtf2.gif" onmouseover="moveImage();" onmouseout="">
+    <div id='information'>
         <p>
-            blahblahblah<a href="https://reddit.com/"><strong>BLAH</strong></a> 
+            God I hate CSS.
         </p>
     </div>
+    <footer class="footer">
+        Go to the EPIC page <a class="link" href="https://2020.vizsociety.net/~gsimmons/tester/wow.html"><strong>HERE</strong></a>.
+    </footer>
 </body> 
 
 </html>

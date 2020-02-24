@@ -1,0 +1,175 @@
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Hanalei&display=swap" rel="stylesheet">
+</head>
+
+<style>
+
+header{
+    font-family: Hanalei;
+    color: white;
+    font-size: 500%;
+    position: fixed;
+    margin-left: 10%;
+    margin-right: -10%;
+}
+
+p {
+    font-family: "Calibri";
+    font-size: 600%;
+    background: red;
+    text-align: center;
+}
+
+.footer {
+    font-family: "Comic Sans MS";
+    background: red;
+    text-align: center;
+}
+
+.link:hover{
+    color: #00FF00;
+}
+
+</style>
+
+<script>
+
+class gif{
+    constructor(image){
+        this.source = image;
+        this.y_vel = 0;
+        this.x_vel = 0;
+    }
+    setYVelocity(y){
+        this.y_vel = y;
+    }
+    setXVelocity(x){
+        this.x_vel = x;
+    }
+    getXVelocity(){
+        return this.x_vel;
+    }
+    getYVelocity(){
+        return this.y_vel;
+    }
+    setRepeater(x){
+        this.movement_repeater = x;
+    }
+    getRepeater(){
+        return this.movement_repeater;
+    }
+    getSource(){
+        return this.source;
+    }
+}
+
+const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
+var colorIndex = 0;
+var repeater;
+var gif_arr = [];
+const width  = window.innerWidth || document.documentElement.clientWidth || 
+document.body.clientWidth;
+const height = window.innerHeight|| document.documentElement.clientHeight|| 
+document.body.clientHeight;
+
+console.log(width, height);
+
+function setImage(image = document.getElementById('reactionGif'), x = (width/2) - (image.width / 2), y = (height/2) - (image.height / 2)){ //center image by default
+    image.style.position = "absolute";
+    image.style.left = x +'px';
+    image.style.top = y +'px';
+    gif_arr.push(new gif(image));
+}
+
+//var x_vel;
+//var y_vel;
+const max_vel = 8;
+const min_vel = -8;
+var speed_multiplier = 0;
+var speed_set = false;
+var color_repeater;
+var bg_r = 0x00;
+var bg_g = 0x00;
+var bg_b = 0x00;
+var bg_color;
+
+function randRange(min, max){
+    return Math.random() * (max - min) + min;
+}
+
+function moveImage(image_index){
+    //var image = document.getElementById('reactionGif');
+    image_wrapper = gif_arr[image_index];
+    image = image_wrapper.getSource();
+    //x_vel = randRange(min_vel, max_vel);
+    //y_vel = randRange(min_vel, max_vel);
+    image_wrapper.setXVelocity(randRange(min_vel * speed_multiplier, max_vel * speed_multiplier));
+    image_wrapper.setYVelocity(randRange(min_vel * speed_multiplier, max_vel * speed_multiplier));
+    clearInterval(color_repeater);
+    color_repeater = setInterval(function(){
+        bg_r = randRange(0x40, 0xFF);
+        bg_g = randRange(0x40, 0xFF);
+        bg_b = randRange(0x40, 0xFF);
+        bg_color = (bg_r << 16) | (bg_g << 8) | (bg_b);
+        console.log(bg_color.toString(16));
+        document.body.style.backgroundColor = bg_color.toString(16);
+        //document.body.style.backgroundColor = colors[colorIndex++];
+        //colorIndex %= colors.length;
+        //bg_color &=0xFFFFFF;
+    }, 1/(Math.abs(image_wrapper.getXVelocity()) + Math.abs(image_wrapper.getYVelocity())) * 6000 / speed_multiplier);
+    //console.log(x_vel, y_vel);
+    //console.log((Math.abs(x_vel) + Math.abs(y_vel)) * 100)
+    clearInterval(image_wrapper.getRepeater());
+    console.log(200/speed_multiplier);
+    image_wrapper.setRepeater(setInterval(function(){
+        image.style.left = parseFloat(image.style.left.replace('px',''))+image_wrapper.getXVelocity()+'px';
+        image.style.top = parseFloat(image.style.top.replace('px',''))+image_wrapper.getYVelocity()+'px';
+        //console.log(image.width + parseFloat(image.style.left))
+        if(image.width + parseFloat(image.style.left) > width || parseFloat(image.style.left) < 0){
+            image_wrapper.setXVelocity(-image_wrapper.getXVelocity());
+        }
+        if(image.height + parseFloat(image.style.top) > height || parseFloat(image.style.top) < 0){
+            image_wrapper.setYVelocity(-image_wrapper.getYVelocity());
+        }
+    }, 20));
+}
+
+function setSpeed(seed_speed = 1){
+    if(!speed_set){
+        speed_multiplier = seed_speed;
+        setInterval(function(){
+            speed_multiplier += 0.5;
+        }, 1000);
+        speed_set = true;
+    }
+    else{
+        return;
+    }
+}
+
+</script> 
+
+<body>
+    <div id='welcome'>
+        <header>
+            Welcome to my new website.
+        </header>
+    </div>
+        <img id='reactionGif' onload="setImage(this);" src="tester/cwtf2.gif" onmouseover="setSpeed();moveImage(0);" onmouseout="">
+        <img id='reactionGif1' onload="setImage(image=this,x=100,y=300);" src="tester/cwtf2.gif" onmouseover="setSpeed();moveImage(1);" onmouseout="">
+        <img id='reactionGif2' onload="setImage(image=this,x=1250,y=300);" src="tester/cwtf2.gif" onmouseover="setSpeed();moveImage(2);" onmouseout="">
+        <img id='reactionGif3' onload="setImage(image=this,x=1250,y=600);" src="tester/cwtf2.gif" onmouseover="setSpeed();moveImage(3);" onmouseout="">
+        <img id='reactionGif4' onload="setImage(image=this,x=100,y=600);" src="tester/cwtf2.gif" onmouseover="setSpeed();moveImage(4);" onmouseout="">
+    <div id='information'>
+        <p>
+            God I hate CSS.
+        </p>
+    </div>
+    <footer class="footer">
+        Go to the EPIC page <a class="link" href="https://2020.vizsociety.net/~gsimmons/tester/wow.html"><strong>HERE</strong></a>.
+    </footer>
+</body> 
+
+</html>
