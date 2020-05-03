@@ -48,6 +48,7 @@ plt.show()
 '''
 
 import geopandas as gpd
+from math import ceil
 from shapely.geometry import Point, Polygon
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -67,7 +68,7 @@ print(merged)
 num = 22
 per_row = 2
 
-fig, ax = plt.subplots(11, figsize=(10,10), ncols=per_row, sharex=True, sharey=True, squeeze=False)
+fig, ax = plt.subplots(int(ceil(num / per_row)), figsize=(10,10), ncols=per_row, sharex=True, sharey=True, squeeze=False)
 print(ax[0])
 
 for index, year in enumerate(merged.columns[13:]):
@@ -77,4 +78,3 @@ for index, year in enumerate(merged.columns[13:]):
     merged.plot(ax=ax[int(index / per_row), index % per_row], column=year)
 plt.show()
 #usa[usa.STUSPS == 'FL'].plot(ax=ax, column='1955')
-
