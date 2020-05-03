@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Flexible data template</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=10" />
+<link rel="stylesheet" type="text/css" href="examples.css"></link>
+<script src="https://2020.vizsociety.net/shared/d3/d3.v3.min.js"></script>
+<script src="https://2020.vizsociety.net/shared/d3/topojson.v1.min.js"></script>
+<script src="https://2020.vizsociety.net/shared/d3/d3.geo.projection.v0.min.js"></script>
+<script src="https://2020.vizsociety.net/shared/js/jquery-1.10.2.js"></script>
+<script src="https://2020.vizsociety.net/shared/js/shared.js"></script>
+<script src="https://2020.vizsociety.net/d3viz/lib/d3viz.js"></script>
+<style>
+
+
+
+</style>
+<script type="text/javascript">
+/* Flexible D3.js global data viewer — by Alex Wellerstein, 2015-2017, v3.0 */
+	
+/* MAP CODE */
+
+//creates a new D3 JSON map object
+var map = new d3SVGMap({
+	div: "#map",
+	width: 960,
+	height: window.innerHeight,
+	mapfile: "json/world-50m.json",
+	projection_name: "mercator",
+	projection_rotate: [0,0,0], 
+	projection_scale: 200,
+	projection_translate: [960/2,window.innerHeight/2],
+	onload: function() {	
+		//this designates what the "tooltip" is going to be
+		map.tooltip = d3.select("#texts")
+					.append("div")
+					.attr("id","tooltip")
+					.text("");
+
+	},
+	graticule_function: d3.geo.graticule(),
+
+	mouseover: function(d1,d,shape) {
+		console.log(d1,d,shape);
+	},
+	
+	loadobjects: ["countries"],
+
+});
+
+/* END MAP CODE */
+
+/* DATA CODE */
+
+//load datasets here
+
+
+/* END DATA CODE */
+
+/* VISUALIZATION CODE */
+
+//load viz elements here
+
+
+
+/* END VISUALIZATION CODE */
+
+/* STARTUP CODE */
+//startup (runs after all elements/scripts/etc. on the page have loaded).
+function init() {
+	window.debug = true; //show some information in the console
+	window.debug_verbose = false; //show a LOT of information in the console
+	d3VizObj.load(); //loads all visualization elements
+}
+window.onload = init;
+
+
+/* END STARTUP CODE */
+
+</script>
+</head>
+<body>
+	<div id="map"></div>
+	<div id="texts">
+		<div id="title">A Blank SVG Map</div>
+		<div id="author">By You</div>
+		<div id="options"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>eBird API Testing</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=10" />
+<link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet"> 
+<script src="https://2020.vizsociety.net/shared/js/jquery-1.10.2.js"></script>
+
+<script type="text/javascript">
+
+function query() {
+    var settings = {
+        "url" : "https://api.ebird.org/v2/data/obs/US/historic/2020/04/11",
+        "method": "GET",
+        "timeout": 0,
+        "headers": {
+            "X-eBirdApiToken": "hbak4rlf1fub"
+        },
+    };
+
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+    });
+}
+
+window.onload = query;
+
+</script>
+</head>
+<body>
+</body>
+</html>

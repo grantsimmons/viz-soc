@@ -1,0 +1,14 @@
+Filtering Options:
+    Heatmap Timeline
+    Point-By-Point Timeline
+    For individual birds, like:
+    https://www.allaboutbirds.org/news/mesmerizing-migration-map-which-species-is-which/?__hstc=60209138.401fc1eb414f828bf458e0b4b3c70e16.1486730393024.1486730393024.1486730393024.1&__hssc=60209138.2.1486730393024&__hsfp=791829305
+        Allow to select and highlight individual, while hover providing
+        coords, species information etc. pop-up
+        Click puts relevant information in the sidebar and highlights bird
+
+Timeline on bottom with date input.
+Scrollable list of species with common name and designation of migratory/not
+Multiple species select.
+Select region, get demographic information on stacked area chart in sidebar.
+Big Stretch: Forecasts

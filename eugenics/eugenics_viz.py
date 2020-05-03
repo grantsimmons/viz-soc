@@ -1,4 +1,5 @@
 import geopandas as gpd
+from math import ceil
 from shapely.geometry import Point, Polygon
 import matplotlib.pyplot as plt
 import pandas as pd

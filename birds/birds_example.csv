@@ -1,0 +1,2 @@
+comName,howMany,lat,lng,locationPrivate,locId,locName,obsDt,obsReviewed,obsValid,sciName,speciesCode,subId
+"Great Horned Owl",1,42.6839598,-70.7667586,false,"L211434","Crane Beach","2020-04-11 23:45",false,true,"Bubo Virginianus","grhowl","S67088321"

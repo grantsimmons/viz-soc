@@ -1,0 +1,462 @@
+/* BASIC STYLING */
+
+body {
+	margin: 0;
+	padding: 0;
+	background-color: silver;
+}
+
+#map, #gmap_map {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 270px;
+	bottom: 0;
+}
+
+svg {
+	background-color: white;
+	width: 100%;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+}
+
+svg.gmap {
+	background-color: transparent;
+	width: auto;
+	top: auto;
+	bottom: auto;
+	left: auto;
+	right: auto;
+}
+
+.overlay { /* for google map */
+	fill: none;
+	pointer-events: all;
+}
+
+
+#graticule {
+	fill: none;
+  	stroke: gray;
+	stroke-width: .5px;
+	stroke-opacity: .5;
+}
+
+.boundary {
+	fill: steelblue;
+	stroke: gray;
+	stroke-width: .5px;
+	stroke-opacity: 1;
+}
+
+#states path {
+	fill: silver;
+	stroke-width: .5px;
+	stroke: gray;
+}
+
+/* TOOLTIP */
+
+#title {
+	font-size: 18pt;
+    text-align: center;
+}
+
+#author {
+	font-size: 10pt;
+	font-style: italic;
+	letter-spacing: 1px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+hr {
+	border: 0;
+	border-bottom: 1px solid gray;
+}
+
+#texts {
+	position: absolute;
+	right: 0px;
+	width: 249px;
+	height: 98%;
+	padding: 10px;
+	font-size: 12pt;
+	background-color: silver;
+	border-left: 1px solid gray;
+    font-family: 'Quicksand', sans-serif;
+}
+
+#tooltip {
+	margin-top: 1em;
+	font-size: 10pt;
+
+}
+
+/* MISC INTERFACE */
+
+
+#finddata {
+	width: 250px;
+}
+
+/* a nifty little CSS animation that makes a big stroke become normal again */
+
+.selected {
+    stroke: red;
+    animation: selectanim 200ms ease;
+    stroke-width: 8px;
+}
+@keyframes selectanim {
+  from { stroke-width: 500px; }
+  to { stroke-width: 4px; }
+}
+
+/* text for the legend */
+#legend .label {
+    font-size: 10pt;
+	pointer-events: none; /* ignore mouse clicks */
+}
+
+/* this makes it so that whenever it zooms in, the strokes will not also scale as well */
+path,circle {
+    vector-effect: non-scaling-stroke; 
+}
+
+/* text caption labels */
+.label {
+	opacity: .4;
+	font-size: 14pt;
+	pointer-events: none; /* ignore mouse clicks */
+}
+.label_point {
+	stroke: none;
+	pointer-events: none; /* ignore mouse clicks */
+}
+
+
+/* applied to data when mouse is over */
+.highlight {
+    stroke-width: 4px;
+    opacity: 1.0;
+}
+
+/* DATA STUFF */
+
+circle {
+	fill-opacity: .8;
+	stroke: white;
+	stroke-width: 1;
+	opacity: .5;
+}
+
+.data_visible {
+	opacity: .5;
+}
+
+.data_hidden {
+	display: none;
+}
+
+.data_has_keyword {
+	display: block;
+}
+
+.data_lacks_keyword {
+	display: none;
+}
+
+.data_in_range {
+	display: block;
+}
+
+.data_date_now {
+	opacity: 1;
+	visibility: visible;
+}
+
+.data_date_past {
+	opacity: .2;
+}
+
+.data_date_future {
+	visibility: hidden;
+}
+
+.data_out_range {
+	display: none;
+}
+
+
+.label_point {
+	display: none;
+}
+
+.label {
+	opacity: .5;
+	font-size: 14pt;
+}
+
+
+.heatmap_canvas {
+	position: relative;
+}
+
+.heatmapSVG {
+	pointer-events: none;
+}
+
+.heatmap {
+	visibility: hidden;
+	position: absolute !important;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	pointer-events: none;
+}
+
+.timeline_anim a {
+	text-decoration: none;
+}
+
+.timeline_slider {
+	width: 99%;
+	height: 5px;
+}
+
+select {
+	max-width: 240px;
+}
+
+
+/* applied to data when mouse is over */
+.mouseover {
+    stroke-width: 4px;
+    opacity: 1.0;
+}
+
+/* a nifty little CSS animation that makes a big stroke become normal again */
+.selected {
+    stroke: red;
+    animation: selectanim 200ms ease;
+    stroke-width: 8px;
+}
+@keyframes selectanim {
+  from { stroke-width: 500px; }
+  to { stroke-width: 4px; }
+}
+
+/* caption for the tooltip */
+#tooltip {
+	margin-top: 1em;
+	font-size: 10pt;
+}
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  float: right;
+  width: 30px;
+  height: 17px;
+  margin-top: 6px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 13px;
+  width: 13px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(13px);
+  -ms-transform: translateX(13px);
+  transform: translateX(13px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 20px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.dark-mode {
+    background-color: rgba(54, 54, 54, 1) !important;
+    color: white;
+}
+
+.dropdown {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  height: 28px;
+  width: 150px;
+  background: #f2f2f2;
+  border: 1px solid;
+  border-color: white #f7f7f7 whitesmoke;
+  border-radius: 3px;
+  background-image: -webkit-linear-gradient(top, transparent, rgba(0, 0, 0, 0.06));
+  background-image: -moz-linear-gradient(top, transparent, rgba(0, 0, 0, 0.06));
+  background-image: -o-linear-gradient(top, transparent, rgba(0, 0, 0, 0.06));
+  background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.06));
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);
+}
+
+.dropdown:before, .dropdown:after {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  top: 9px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 4px dashed;
+  border-color: #888888 transparent;
+  pointer-events: none;
+}
+
+.dropdown:before {
+  border-bottom-style: solid;
+  border-top: none;
+}
+
+.dropdown:after {
+  margin-top: 7px;
+  border-top-style: solid;
+  border-bottom: none;
+}
+
+.dropdown-select {
+  position: relative;
+  width: 130%;
+  margin: 0;
+  padding: 6px 8px 6px 10px;
+  height: 28px;
+  line-height: 14px;
+  font-size: 12px;
+  color: #62717a;
+  text-shadow: 0 1px white;
+  background: #f2f2f2; /* Fallback for IE 8 */
+  background: rgba(0, 0, 0, 0) !important; /* "transparent" doesn't work with Opera */
+  border: 0;
+  border-radius: 0;
+  -webkit-appearance: none;
+}
+
+.dropdown-select:focus {
+  z-index: 3;
+  width: 100%;
+  color: #394349;
+  outline: 2px solid #49aff2;
+  outline: 2px solid -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+.dropdown > option {
+  margin: 3px;
+  padding: 6px 8px;
+  text-shadow: none;
+  background: #f2f2f2;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+
+.dropdown-dark {
+  background: #444;
+  border-color: #111111 #0a0a0a black;
+  background-image: -webkit-linear-gradient(top, transparent, rgba(0, 0, 0, 0.4));
+  background-image: -moz-linear-gradient(top, transparent, rgba(0, 0, 0, 0.4));
+  background-image: -o-linear-gradient(top, transparent, rgba(0, 0, 0, 0.4));
+  background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.4));
+  -webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.1), 0 1px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.1), 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-dark:before {
+  border-bottom-color: #aaa;
+}
+
+.dropdown-dark:after {
+  border-top-color: #aaa;
+}
+
+.dropdown-dark .dropdown-select {
+  color: #aaa;
+  text-shadow: 0 1px black;
+  background: #444;  /* Fallback for IE 8 */
+}
+
+.dropdown-dark .dropdown-select:focus {
+  color: #ccc;
+}
+
+.dropdown-dark .dropdown-select > option {
+  background: #444;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.4);
+}
+
+.dropdown-container {
+    height: 30px;
+    line-height: 30px;
+    margin-right: 5px;
+    float: left;
+}
+
+.switch-container {
+    height: 30px;
+}
+
+.svg-dark {
+    background-color: #202020 !important;
+}
+
+.captions {
+    font-family: 'Quicksand', sans-serif;
+}
+
+.captions-dark {
+    fill: white;
+}
